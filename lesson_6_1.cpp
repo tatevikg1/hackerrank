@@ -12,6 +12,7 @@ class AddElements{
     public:
         T x;
         AddElements(T arg1) {x = arg1;}
+        
         T add(T arg2){
             return x + arg2;
         }
