@@ -70,23 +70,38 @@ void free_doubly_linked_list(DoublyLinkedListNode* node) {
  * };
  *
  */
+// DoublyLinkedListNode* reverse(DoublyLinkedListNode* head) {
+//     auto it = head;
+//     head = head->next;
+    
+//     it->next = nullptr;
+//     it->prev = head;
+    
+//     while(head->next){
+//         head = head->next;
+//         it->prev->next = it;
+//         it->prev->prev = head;
+//         it = it->prev;         
+//     }
+//     head->next = it;
+//     head->prev = nullptr;
+    
+//     return head;
+// }
+
+// this one is faster
 DoublyLinkedListNode* reverse(DoublyLinkedListNode* head) {
-    auto it = head;
-    head = head->next;
-    
-    it->next = nullptr;
-    it->prev = head;
-    
-    while(head->next){
-        head = head->next;
-        it->prev->next = it;
-        it->prev->prev = head;
-        it = it->prev;         
+    auto temp = head;
+    auto newHead = head;
+    auto prev = head;
+    while (temp != nullptr) {
+        prev = temp->prev;
+        temp->prev = temp->next;
+        temp->next = prev;
+        newHead = temp;
+        temp = temp->prev;
     }
-    head->next = it;
-    head->prev = nullptr;
-    
-    return head;
+    return newHead;
 }
 
 int main()

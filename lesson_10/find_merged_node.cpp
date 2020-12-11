@@ -57,19 +57,24 @@ void free_singly_linked_list(SinglyLinkedListNode* node) {
     }
 }
 
-
 int findMergeNode(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
-    auto it = head1;
-    while(head1->next){
-        it = head1->next;
-        head1->next = nullptr;
-        head1 = it;
+    auto it1 = head1;
+    auto it2 = head2;
+    
+    while(it1 != it2){
+        
+        if(it1->next == nullptr)
+            it1 = head1;
+        else
+            it1 = it1->next;
+            
+        if(it2->next == nullptr)
+            it2 = head2;
+        else
+            it2 = it2->next;
     }
-    while(head2->next){
-        it = head2->next;
-        head2 = it;
-    }
-    return it->data;
+    
+    return it1->data;
 }
 
 int main()
